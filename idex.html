@@ -1,194 +1,252 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090b12">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GameVault Russia — каталог компьютерных игр и игровых предложений.">
 <title>GameVault Russia — магазин игр</title>
-<meta name="description" content="Каталог компьютерных игр и игровые предложения.">
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#090b12;color:#f4f6ff;font-family:Arial,sans-serif}
-header{background:#101522;border-bottom:1px solid #283047;padding:22px 5%}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1px}
-.logo span{color:#39d9e8}
-.wrap{width:min(1100px,92%);margin:auto}
-.hero{padding:65px 0 45px;background:radial-gradient(ellipse at 80% 10%,#382066,transparent 55%)}
-.tag{color:#39d9e8;font-size:12px;font-weight:bold;letter-spacing:2px}
-h1{font-size:clamp(36px,7vw,64px);line-height:1.08;margin:18px 0}
-h1 span{color:#a78bfa}
-p{color:#aab4ca;line-height:1.7}
-.search{display:flex;gap:10px;margin-top:25px}
-input,select{background:#141b2a;border:1px solid #303b53;border-radius:9px;padding:14px;color:white;font-size:15px}
-input{flex:1;min-width:0}
-section{padding:35px 0}
-h2{font-size:26px}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
-.filter{background:#171e2d;color:#d9def0;border:1px solid #30394e;border-radius:22px;padding:10px 15px;cursor:pointer}
-.filter.active{background:#7044d7}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.card{overflow:hidden;background:#131a28;border:1px solid #293249;border-radius:14px}
-.art{height:150px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#172e50,#42235d)}
-.a2{background:linear-gradient(135deg,#23423c,#182445)}
-.a3{background:linear-gradient(135deg,#51243d,#202449)}
-.a4{background:linear-gradient(135deg,#42315d,#193147)}
-.a5{background:linear-gradient(135deg,#554021,#27213e)}
-.a6{background:linear-gradient(135deg,#193f52,#39224f)}
-.content{padding:17px}
-.genre{font-size:11px;color:#39d9e8;text-transform:uppercase;letter-spacing:1px}
-h3{margin:10px 0;font-size:19px}
-.content p{font-size:13px;min-height:40px}
-.buy{width:100%;border:0;border-radius:8px;padding:13px;background:#7547e8;color:white;font-weight:bold;cursor:pointer}
-.buy:hover{background:#9066ff}
-.info{background:#121927;border:1px solid #293249;border-radius:12px;padding:22px}
-footer{border-top:1px solid #293249;padding:28px 0;color:#9ba7be;font-size:12px;line-height:1.8}
-footer strong{color:white}
-#empty{display:none}
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art{height:120px}.search{flex-direction:column}}
-@media(max-width:460px){.grid{grid-template-columns:1fr}.art{height:160px}}
+:root {
+  --bg: #0b1020;
+  --panel: #151d30;
+  --accent: #66e3ff;
+  --text: #f4f7ff;
+  --muted: #aab5ca;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  padding: 24px 6%;
+  background: #10182b;
+  border-bottom: 1px solid #283650;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.logo { font-size: 27px; font-weight: 800; }
+.logo span { color: var(--accent); }
+header a { color: var(--text); text-decoration: none; }
+.hero {
+  padding: 65px 6%;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #203b60, #0b1020 70%);
+}
+.hero h1 { font-size: clamp(30px, 5vw, 52px); margin: 0 0 16px; }
+.hero p { color: var(--muted); font-size: 17px; line-height: 1.6; }
+.search {
+  width: min(520px, 100%);
+  padding: 15px;
+  margin-top: 18px;
+  border: 1px solid #34435e;
+  border-radius: 10px;
+  background: #10182b;
+  color: white;
+  font-size: 16px;
+}
+main { padding: 36px 6%; }
+.section-title { font-size: 28px; margin-bottom: 8px; }
+.note { color: var(--muted); line-height: 1.6; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0; }
+.filters button, .buy {
+  border: 0;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.filters button { background: #202b42; color: white; }
+.filters button.active { background: var(--accent); color: #07111d; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.game {
+  background: var(--panel);
+  border: 1px solid #283650;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.game:hover { transform: translateY(-4px); border-color: var(--accent); }
+.art {
+  min-height: 145px;
+  display: grid;
+  place-items: center;
+  font-size: 62px;
+  background: linear-gradient(135deg, #263b60, #11182b);
+}
+.game-body { padding: 18px; }
+.game h3 { margin: 0 0 10px; font-size: 19px; }
+.tag { color: var(--accent); font-size: 13px; }
+.game p { color: var(--muted); min-height: 42px; line-height: 1.5; }
+.buy {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #07111d;
+  text-align: center;
+  text-decoration: none;
+}
+.empty { color: var(--muted); padding: 20px 0; }
+footer {
+  margin-top: 35px;
+  padding: 30px 6%;
+  background: #10182b;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+footer a { color: var(--accent); }
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">GAME<span>VAULT</span></div>
+  <a class="logo" href="#">GAME<span>VAULT</span></a>
+  <a href="#games">Каталог игр</a>
 </header>
 
-<main>
-<div class="hero">
-  <div class="wrap">
-    <div class="tag">ТВОЯ ИГРОВАЯ ТЕРРИТОРИЯ</div>
-    <h1>Найди свою<br><span>следующую игру</span></h1>
-    <p>Исследуй мир компьютерных игр, открывай новые приключения и находи интересные предложения.</p>
-    <div class="search">
-      <input id="search" type="search" placeholder="Найти игру..." aria-label="Поиск игр">
-      <select id="category" aria-label="Категория">
-        <option value="all">Все категории</option>
-        <option value="action">Экшен</option>
-        <option value="rpg">RPG</option>
-        <option value="strategy">Стратегии</option>
-        <option value="adventure">Приключения</option>
-      </select>
-    </div>
-  </div>
-</div>
+<section class="hero">
+  <h1>Твоя следующая игра начинается здесь</h1>
+  <p>Открывай новые миры, находи интересные игры<br>
+  и изучай предложения для своего ПК.</p>
+  <input class="search" id="search" type="search"
+    placeholder="Поиск игр..." aria-label="Поиск игр">
+</section>
 
-<section class="wrap">
-  <h2>Популярные игры</h2>
+<main id="games">
+  <h2 class="section-title">Популярные игры</h2>
+  <p class="note">
+    Выбирай игру и изучай доступные предложения.
+    Наличие и цены проверяй на сайте продавца.
+  </p>
+
   <div class="filters">
-    <button class="filter active" data-filter="all">Все игры</button>
-    <button class="filter" data-filter="action">Экшен</button>
-    <button class="filter" data-filter="rpg">RPG</button>
-    <button class="filter" data-filter="strategy">Стратегии</button>
-    <button class="filter" data-filter="adventure">Приключения</button>
+    <button class="active" data-filter="all">Все игры</button>
+    <button data-filter="action">Экшен</button>
+    <button data-filter="rpg">RPG</button>
+    <button data-filter="strategy">Стратегии</button>
   </div>
 
-  <div class="grid" id="games"><article class="card" data-name="cyberpunk 2077 киберпанк" data-category="rpg action">
-      <div class="art">🌆</div>
-      <div class="content">
-        <div class="genre">RPG · Экшен</div>
-        <h3>Cyberpunk 2077</h3>
-        <p>Футуристический открытый мир и приключения в Найт-Сити.</p>
-        <button class="buy" data-game="Cyberpunk 2077">Посмотреть предложения ↗</button>
-      </div>
-    </article>
-
-    <article class="card" data-name="the witcher 3 ведьмак" data-category="rpg adventure">
-      <div class="art a2">⚔️</div>
-      <div class="content">
-        <div class="genre">RPG · Приключения</div>
-        <h3>The Witcher 3</h3>
-        <p>Фэнтезийный мир, чудовища и история ведьмака.</p>
-        <button class="buy" data-game="The Witcher 3">Посмотреть предложения ↗</button>
-      </div>
-    </article>
-
-    <article class="card" data-name="elden ring" data-category="rpg action">
-      <div class="art a3">🛡️</div>
-      <div class="content">
-        <div class="genre">RPG · Экшен</div>
+  <div class="grid" id="catalog">
+    <article class="game" data-category="action">
+      <div class="art">⚔️</div>
+      <div class="game-body">
+        <span class="tag">ЭКШЕН</span>
         <h3>Elden Ring</h3>
-        <p>Исследуй загадочные земли и сражайся с сильными врагами.</p>
-        <button class="buy" data-game="Elden Ring">Посмотреть предложения ↗</button>
+        <p>Исследуй огромный мир и сражайся с сильными врагами.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
       </div>
     </article>
 
-    <article class="card" data-name="baldurs gate 3" data-category="rpg adventure">
-      <div class="art a4">🐉</div>
-      <div class="content">
-        <div class="genre">RPG · Приключения</div>
+    <article class="game" data-category="action">
+      <div class="art">🚗</div>
+      <div class="game-body">
+        <span class="tag">ЭКШЕН</span>
+        <h3>Grand Theft Auto V</h3>
+        <p>Большой открытый мир, автомобили и криминальные истории.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
+      </div>
+    </article>
+
+    <article class="game" data-category="rpg">
+      <div class="art">🐉</div>
+      <div class="game-body">
+        <span class="tag">RPG</span>
+        <h3>The Witcher 3</h3>
+        <p>Фэнтезийное приключение с решениями, влияющими на историю.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
+      </div>
+    </article>
+
+    <article class="game" data-category="strategy">
+      <div class="art">🏰</div>
+      <div class="game-body">
+        <span class="tag">СТРАТЕГИЯ</span>
+        <h3>Age of Empires IV</h3>
+        <p>Развивай цивилизацию и веди армии к победе.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
+      </div>
+    </article>
+
+    <article class="game" data-category="action">
+      <div class="art">🚀</div>
+      <div class="game-body">
+        <span class="tag">ЭКШЕН</span>
+        <h3>Cyberpunk 2077</h3>
+        <p>Футуристический мегаполис, технологии и опасные задания.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
+      </div>
+    </article>
+
+    <article class="game" data-category="rpg">
+      <div class="art">🧙</div>
+      <div class="game-body">
+        <span class="tag">RPG</span>
         <h3>Baldur's Gate 3</h3>
-        <p>Фэнтезийное приключение с тактическими сражениями.</p>
-        <button class="buy" data-game="Baldur's Gate 3">Посмотреть предложения ↗</button>
-      </div>
-    </article>
-
-    <article class="card" data-name="civilization vi цивилизация" data-category="strategy">
-      <div class="art a5">🏛️</div>
-      <div class="content">
-        <div class="genre">Стратегия</div>
-        <h3>Civilization VI</h3>
-        <p>Создай цивилизацию и проведи её через века истории.</p>
-        <button class="buy" data-game="Civilization VI">Посмотреть предложения ↗</button>
-      </div>
-    </article>
-
-    <article class="card" data-name="red dead redemption 2 rdr2" data-category="action adventure">
-      <div class="art a6">🤠</div>
-      <div class="content">
-        <div class="genre">Экшен · Приключения</div>
-        <h3>Red Dead Redemption 2</h3>
-        <p>История банды в огромном мире Дикого Запада.</p>
-        <button class="buy" data-game="Red Dead Redemption 2">Посмотреть предложения ↗</button>
+        <p>Ролевая игра с приключениями, диалогами и тактическими боями.</p>
+        <a class="buy" href="https://www.g2a.com/n/reflink-86a267cf1a"
+           target="_blank" rel="noopener noreferrer">Посмотреть предложение</a>
       </div>
     </article>
   </div>
-  <p id="empty">Игры не найдены. Попробуй изменить поиск.</p>
-</section>
-
-<section class="wrap">
-  <div class="info">
-    <strong>Как работает GameVault?</strong>
-    <p>Мы создаём каталог компьютерных игр со ссылками на магазины-партнёры. Перед покупкой проверяй регион активации, платформу и условия продавца. Цены и партнёрские ссылки появятся после подключения соответствующих предложений.</p>
-  </div>
-</section>
+  <p id="empty" class="empty" hidden>Игры не найдены. Попробуй другой запрос.</p>
 </main>
 
 <footer>
-  <div class="wrap">
-    <strong>GAMEVAULT RUSSIA</strong><br>
-    Независимый каталог компьютерных игр. Не является официальным представителем игровых издателей.
-  </div>
+  <strong>GAMEVAULT RUSSIA</strong><br>
+  Каталог компьютерных игр и игровых предложений.<br>
+  Переходя к продавцу, проверяй регион активации, язык,
+  платформу и условия покупки.<br><br>
+  Некоторые ссылки могут быть партнёрскими.
+  Если покупка совершается по отслеживаемой ссылке,
+  сайт может получить комиссию без дополнительных расходов
+  для покупателя. Партнёрское вознаграждение не гарантировано.
 </footer>
 
 <script>
-const search=document.getElementById('search');
-const category=document.getElementById('category');
-const cards=[...document.querySelectorAll('.card')];
-const filters=[...document.querySelectorAll('.filter')];
-let active='all';
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.game')];
+const buttons = [...document.querySelectorAll('[data-filter]')];
+let category = 'all';
 
-function update(){
-  const q=search.value.trim().toLowerCase();
-  const selected=category.value!=='all'?category.value:active;
-  let count=0;
-  cards.forEach(card=>{
-    const name=card.dataset.name.includes(q);
-    const genre=selected==='all'||card.dataset.category.split(' ').includes(selected);
-    card.style.display=name&&genre?'':'none';
-    if(name&&genre)count++;
+function updateCatalog() {
+  const query = search.value.trim().toLowerCase();
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesText = card.innerText.toLowerCase().includes(query);
+    const matchesCategory =
+      category === 'all' || card.dataset.category === category;
+    const show = matchesText && matchesCategory;
+    card.hidden = !show;
+    if (show) visible++;
   });
-  document.getElementById('empty').style.display=count?'none':'block';
+
+  document.getElementById('empty').hidden = visible !== 0;
 }
-search.addEventListener('input',update);
-category.addEventListener('change',update);
-filters.forEach(button=>button.addEventListener('click',()=>{
-  active=button.dataset.filter;category.value='all';
-  filters.forEach(b=>b.classList.toggle('active',b===button));
-  update();
-}));
-document.querySelectorAll('[data-game]').forEach(button=>{
-  button.addEventListener('click',()=>{
-    alert('Партнёрская ссылка для '+button.dataset.game+' пока не подключена.');
+
+search.addEventListener('input', updateCatalog);
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    category = button.dataset.filter;
+    buttons.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    updateCatalog();
   });
 });
 </script>
