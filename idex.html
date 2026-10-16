@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<title>GameVault Russia — магазин игр</title>
+<meta name="description" content="Каталог компьютерных игр и игровые предложения.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090b12;color:#f4f6ff;font-family:Arial,sans-serif}
+header{background:#101522;border-bottom:1px solid #283047;padding:22px 5%}
+.logo{font-size:27px;font-weight:900;letter-spacing:-1px}
+.logo span{color:#39d9e8}
+.wrap{width:min(1100px,92%);margin:auto}
+.hero{padding:65px 0 45px;background:radial-gradient(ellipse at 80% 10%,#382066,transparent 55%)}
+.tag{color:#39d9e8;font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(36px,7vw,64px);line-height:1.08;margin:18px 0}
+h1 span{color:#a78bfa}
+p{color:#aab4ca;line-height:1.7}
+.search{display:flex;gap:10px;margin-top:25px}
+input,select{background:#141b2a;border:1px solid #303b53;border-radius:9px;padding:14px;color:white;font-size:15px}
+input{flex:1;min-width:0}
+section{padding:35px 0}
+h2{font-size:26px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.filter{background:#171e2d;color:#d9def0;border:1px solid #30394e;border-radius:22px;padding:10px 15px;cursor:pointer}
+.filter.active{background:#7044d7}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{overflow:hidden;background:#131a28;border:1px solid #293249;border-radius:14px}
+.art{height:150px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#172e50,#42235d)}
+.a2{background:linear-gradient(135deg,#23423c,#182445)}
+.a3{background:linear-gradient(135deg,#51243d,#202449)}
+.a4{background:linear-gradient(135deg,#42315d,#193147)}
+.a5{background:linear-gradient(135deg,#554021,#27213e)}
+.a6{background:linear-gradient(135deg,#193f52,#39224f)}
+.content{padding:17px}
+.genre{font-size:11px;color:#39d9e8;text-transform:uppercase;letter-spacing:1px}
+h3{margin:10px 0;font-size:19px}
+.content p{font-size:13px;min-height:40px}
+.buy{width:100%;border:0;border-radius:8px;padding:13px;background:#7547e8;color:white;font-weight:bold;cursor:pointer}
+.buy:hover{background:#9066ff}
+.info{background:#121927;border:1px solid #293249;border-radius:12px;padding:22px}
+footer{border-top:1px solid #293249;padding:28px 0;color:#9ba7be;font-size:12px;line-height:1.8}
+footer strong{color:white}
+#empty{display:none}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art{height:120px}.search{flex-direction:column}}
+@media(max-width:460px){.grid{grid-template-columns:1fr}.art{height:160px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">GAME<span>VAULT</span></div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">ТВОЯ ИГРОВАЯ ТЕРРИТОРИЯ</div>
+    <h1>Найди свою<br><span>следующую игру</span></h1>
+    <p>Исследуй мир компьютерных игр, открывай новые приключения и находи интересные предложения.</p>
+    <div class="search">
+      <input id="search" type="search" placeholder="Найти игру..." aria-label="Поиск игр">
+      <select id="category" aria-label="Категория">
+        <option value="all">Все категории</option>
+        <option value="action">Экшен</option>
+        <option value="rpg">RPG</option>
+        <option value="strategy">Стратегии</option>
+        <option value="adventure">Приключения</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<section class="wrap">
+  <h2>Популярные игры</h2>
+  <div class="filters">
+    <button class="filter active" data-filter="all">Все игры</button>
+    <button class="filter" data-filter="action">Экшен</button>
+    <button class="filter" data-filter="rpg">RPG</button>
+    <button class="filter" data-filter="strategy">Стратегии</button>
+    <button class="filter" data-filter="adventure">Приключения</button>
+  </div>
+
+  <div class="grid" id="games"><article class="card" data-name="cyberpunk 2077 киберпанк" data-category="rpg action">
+      <div class="art">🌆</div>
+      <div class="content">
+        <div class="genre">RPG · Экшен</div>
+        <h3>Cyberpunk 2077</h3>
+        <p>Футуристический открытый мир и приключения в Найт-Сити.</p>
+        <button class="buy" data-game="Cyberpunk 2077">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="the witcher 3 ведьмак" data-category="rpg adventure">
+      <div class="art a2">⚔️</div>
+      <div class="content">
+        <div class="genre">RPG · Приключения</div>
+        <h3>The Witcher 3</h3>
+        <p>Фэнтезийный мир, чудовища и история ведьмака.</p>
+        <button class="buy" data-game="The Witcher 3">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="elden ring" data-category="rpg action">
+      <div class="art a3">🛡️</div>
+      <div class="content">
+        <div class="genre">RPG · Экшен</div>
+        <h3>Elden Ring</h3>
+        <p>Исследуй загадочные земли и сражайся с сильными врагами.</p>
+        <button class="buy" data-game="Elden Ring">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="baldurs gate 3" data-category="rpg adventure">
+      <div class="art a4">🐉</div>
+      <div class="content">
+        <div class="genre">RPG · Приключения</div>
+        <h3>Baldur's Gate 3</h3>
+        <p>Фэнтезийное приключение с тактическими сражениями.</p>
+        <button class="buy" data-game="Baldur's Gate 3">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="civilization vi цивилизация" data-category="strategy">
+      <div class="art a5">🏛️</div>
+      <div class="content">
+        <div class="genre">Стратегия</div>
+        <h3>Civilization VI</h3>
+        <p>Создай цивилизацию и проведи её через века истории.</p>
+        <button class="buy" data-game="Civilization VI">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="red dead redemption 2 rdr2" data-category="action adventure">
+      <div class="art a6">🤠</div>
+      <div class="content">
+        <div class="genre">Экшен · Приключения</div>
+        <h3>Red Dead Redemption 2</h3>
+        <p>История банды в огромном мире Дикого Запада.</p>
+        <button class="buy" data-game="Red Dead Redemption 2">Посмотреть предложения ↗</button>
+      </div>
+    </article>
+  </div>
+  <p id="empty">Игры не найдены. Попробуй изменить поиск.</p>
+</section>
+
+<section class="wrap">
+  <div class="info">
+    <strong>Как работает GameVault?</strong>
+    <p>Мы создаём каталог компьютерных игр со ссылками на магазины-партнёры. Перед покупкой проверяй регион активации, платформу и условия продавца. Цены и партнёрские ссылки появятся после подключения соответствующих предложений.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>GAMEVAULT RUSSIA</strong><br>
+    Независимый каталог компьютерных игр. Не является официальным представителем игровых издателей.
+  </div>
+</footer>
+
+<script>
+const search=document.getElementById('search');
+const category=document.getElementById('category');
+const cards=[...document.querySelectorAll('.card')];
+const filters=[...document.querySelectorAll('.filter')];
+let active='all';
+
+function update(){
+  const q=search.value.trim().toLowerCase();
+  const selected=category.value!=='all'?category.value:active;
+  let count=0;
+  cards.forEach(card=>{
+    const name=card.dataset.name.includes(q);
+    const genre=selected==='all'||card.dataset.category.split(' ').includes(selected);
+    card.style.display=name&&genre?'':'none';
+    if(name&&genre)count++;
+  });
+  document.getElementById('empty').style.display=count?'none':'block';
+}
+search.addEventListener('input',update);
+category.addEventListener('change',update);
+filters.forEach(button=>button.addEventListener('click',()=>{
+  active=button.dataset.filter;category.value='all';
+  filters.forEach(b=>b.classList.toggle('active',b===button));
+  update();
+}));
+document.querySelectorAll('[data-game]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    alert('Партнёрская ссылка для '+button.dataset.game+' пока не подключена.');
+  });
+});
+</script>
+</body>
+</html>
